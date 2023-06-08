@@ -1,7 +1,5 @@
 import csvParse from "csv-parse";
 import fs from "fs";
-import { inject, injectable } from "tsyringe";
-
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategory {
@@ -9,10 +7,8 @@ interface IImportCategory {
   description: string;
 }
 
-@injectable()
 class ImportCategoryUseCase {
   constructor(
-    @inject("CategoriesRepository")
     private categoriesRepository: ICategoriesRepository
   ) {}
 
