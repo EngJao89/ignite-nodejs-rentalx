@@ -9,7 +9,7 @@ class ListCategoriesController {
 
   handle(request: Request, response: Response): Response {
 
-    const all = listCategoriesUseCase.execute();
+    const all = ListCategoriesUseCase.execute();
 
     return response.json(all);
   }
