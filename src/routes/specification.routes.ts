@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { SpecificationsRepository } from "../modules/cars/infra/typeorm/repositories/SpecificationsRepository";
-import { CreateSpecificationUseCase } from "../modules/cars/useCases/createSpecification/CreateSpecificationUseCase";
-import { createSpecificationController } from "../modules/cars/useCases/createSpecification";
 
-const specificationRoutes = Router();
+import { CreateSpecificationController } from "@modules/cars/useCases/createSpecification/CreateSpecificationController";
+const specificationsRoutes = Router();
 
-specificationRoutes.post("/", (request, response) => {
-  return createSpecificationController.handle(request, response);
-})
+const createSpecificationController = new CreateSpecificationController();
 
-export { specificationRoutes }
+specificationsRoutes.post(
+  "/",
+  createSpecificationController.handle
+);
+
+export { specificationsRoutes };
