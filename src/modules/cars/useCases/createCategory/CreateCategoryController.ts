@@ -1,15 +1,16 @@
 import { Response, Request } from "express";
+import { container } from "tsyringe";
 
-import { CreateCategoryUseCase } from "../createCategory/CreateCategoryUseCase";
-import { CreateCategoryService } from "../../services/CreateCategoryService";
+import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 class CreateCategoryController {
-  constructor(private createCAtegoryUseCase: CreateCategoryUseCase){}
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
-    this.createCAtegoryUseCase.execute({name, description});
-  
+    const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
+
+    await createCategoryUseCase.execute({ name, description });
+
     return response.status(201).send();
   }
 }
