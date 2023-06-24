@@ -9,8 +9,8 @@ import upload from "@config/upload";
 import { AppError } from "@shared/errors/AppError";
 import createConnection from "@shared/infra/typeorm";
 
-import swaggerFile from "../../swagger.json";
-import { router } from "./http/routes";
+import swaggerFile from "../../../swagger.json";
+import { router } from "./routes";
 
 createConnection();
 const app = express();
